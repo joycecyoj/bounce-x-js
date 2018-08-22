@@ -40,38 +40,48 @@ overlay.style = `display: none;
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.5);`;
+  background-color: rgba(0,0,0,0.7);`;
 
 var overlayContent = document.createElement('div');
 overlay.appendChild(overlayContent);
 overlayContent.style = `
   background-color: white;
   margin: 20% auto;
-  width: 70%;
+  width: 50%;
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);`;
 
+var closeBtn = document.createElement('span');
+closeBtn.style = `
+  float: right;
+  color: black;
+  font-size: 25px;`;
+closeBtn.innerHTML = `&times;`;
+// overlayHeader.appendChild(closeBtn);
+
 var overlayHeader = document.createElement('div');
+overlayHeader.appendChild(closeBtn);
 overlayContent.appendChild(overlayHeader);
 overlayHeader.style = `
-  padding: 15px;
-  background: black;
-  color: #fff;
-  margin: 0;`;
-overlayHeader.innerHTML = `<h1 style="font-size":large>Don't forget to checkout!</h1>`;
+  padding: 30px;
+  background: white;
+  color: black;
+  margin: 30px;
+  font: 30px/1 ars_maquette_prolight,sans-serif;`;
+overlayHeader.innerHTML = `<h1>Don't forget to checkout!</h1><hr>`;
 
 var overlayBody = document.createElement('div');
-var inputQtyArr = document.querySelectorAll(
-  'input.input-text.input-change-value'
-);
-var itemCount = qtyTotal(inputQtyArr);
-var cartTotal = document.getElementsByClassName('order-value')[1].innerText;
+var itemCount = document.getElementsByClassName('minicart-quantity')[0].innerHTML;
+var cartTotal = document.querySelectorAll('.order-value')[0].innerHTML;
 overlayContent.appendChild(overlayBody);
 overlayBody.style = `
-  padding: 10px 20px 0px;
+  padding: 0px 30px 0px;
+    margin-left: 30px;
+    margin-right: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-flow: row-wrap;`;
+
 overlayBody.innerHTML = `
   <div>
     <div>
@@ -85,22 +95,46 @@ overlayBody.innerHTML = `
 
 
 var itemImages = document.querySelectorAll('div.mini-cart-container img');
-if (itemImages > 2) {
-  itemImages = itemImages.slice(0,2);
-}
+var moreText = document.createElement('div')
+moreText.innerHTML =`
+  <div>
+    <p>...and more</p>
+  </div>`;
 for (let i = 0; i < itemImages.length; i++) {
-  overlayBody.appendChild(itemImages[i]);
+  if (itemImages.length > 3) {
+    for (let j = 0; j < 3; j++) {
+      overlayBody.appendChild(itemImages[j]);
+    }
+      overlayBody.appendChild(moreText);
+  } else {
+      overlayBody.appendChild(itemImages[i]);
+  }
 }
+
 
 var overlayFooter = document.createElement('div');
+overlayContent.appendChild(overlayFooter);
+overlayFooter.style = `
+  font: 24px/1 ars_maquette_prolight,sans-serif;
+  display: flex;
+  justify-content: center;
+  background: white;
+  padding: 10px;
+  `;
 
-var closeBtn = document.createElement('span');
-overlayHeader.appendChild(closeBtn);
-closeBtn.style = `
-  float: right;
-  color: white;
-  font-size: 25px;`;
-closeBtn.innerHTML = `&times;`;
+
+
+var viewCartBtn = document.createElement('a');
+viewCartBtn.style = 'margin:15px 15px;';
+viewCartBtn.setAttribute('class', 'primary-button', 'minicart-link-checkout', 'show-for-large');
+viewCartBtn.setAttribute('href', 'https://www.marmot.com/cart/');
+viewCartBtn.innerHTML = `Go To Cart`;
+viewCartBtn.style = `
+  background = red;
+  border = 1px solid red
+  color = white;
+  margin: 15px 15px;
+  `;
 
 closeBtn.addEventListener('click', closeOverlay);
 window.addEventListener('click', clickOutside);
@@ -118,11 +152,22 @@ function clickOutside(evt) {
     overlay.style.display = 'none';
   }
 }
+overlayFooter.appendChild(viewCartBtn);
 
-function qtyTotal(arr) {
-  let sum = 0;
-  for (let i = 0; i < arr.length; i++) {
-    sum += Number(arr[i].value);
+
+closeBtn.addEventListener('click', closeOverlay);
+window.addEventListener('click', clickOutside);
+
+function openOverlay() {
+overlay.style.display = 'block';
+}
+
+function closeOverlay() {
+overlay.style.display = 'none';
+}
+
+function clickOutside(evt) {
+  if (evt.target === overlay) {
+    overlay.style.display = 'none';
   }
-  return sum;
 }
