@@ -1,13 +1,8 @@
 // Write a JavaScript snippet that can be run in the console of the browser that does the following:
-
 // Extracts the number of items in the cart, the cart total, and the item images from the page. Store them in variables.
-
 // Create a trigger that activates when the user scrolls into the bottom 10% of the page.
-
 // The trigger should show a centered overlay on top of the site that displays the information gathered above and two buttons. One button should close the overlay and the other should take the user to the cart page. It should have a style consistent with the website. Design matters.
-
 // Behind the overlay add a semi­transparent black background that obscures the site. The overlay should be able to trigger multiple times if dismissed.
-
 
 var overlay = document.createElement('div');
 document.body.appendChild(overlay);
@@ -122,16 +117,6 @@ viewCartBtn.style = `
   margin: 15px 15px;
   `;
 
-closeBtn.addEventListener('click', closeOverlay);
-window.addEventListener('click', clickOutside);
-window.onscroll = function() {
-  if (window.innerHeight + window.scrollY >= document.body.scrollHeight * 0.9) {
-    if (itemCount > 0){
-      openOverlay();
-    }
-  }
-};
-
 function openOverlay() {
   overlay.style.display = 'block';
 }
@@ -149,18 +134,10 @@ overlayFooter.appendChild(viewCartBtn);
 
 closeBtn.addEventListener('click', closeOverlay);
 window.addEventListener('click', clickOutside);
-
-function openOverlay() {
-  overlay.style.display = 'block';
-}
-
-function closeOverlay() {
-  overlay.style.display = 'none';
-}
-
-function clickOutside(evt) {
-  if (evt.target === overlay) {
-    overlay.style.display = 'none';
+window.onscroll = function() {
+  if (window.innerHeight + window.scrollY >= document.body.scrollHeight * 0.9) {
+    if (itemCount > 0) {
+      openOverlay();
+    }
   }
-}
-
+};
