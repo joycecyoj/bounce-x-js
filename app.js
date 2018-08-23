@@ -35,13 +35,11 @@ overlayContent.style = `
   var overlayHeader = document.createElement('div');
   overlayContent.appendChild(overlayHeader);
   overlayHeader.style = `
-  padding-top: 30px;
-  padding-left: 30px;
-  padding-right: 30px;
-  color: black;
-  margin: 30px;
+  padding-top: 45px;
+  border-bottom: 1px solid #cbcbcb;
+  margin: 30px 50px 30px 50px;
   font: 30px/1 ars_maquette_prolight,sans-serif;`;
-  overlayHeader.innerHTML = `<h1>Don't forget to checkout!</h1><hr>`;
+  overlayHeader.innerHTML = `<h1 style="padding-bottom:30px">Don't forget to checkout!</h1>`;
 
 
 var overlayBody = document.createElement('div');
