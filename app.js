@@ -96,25 +96,19 @@ overlayFooter.style = `
   display: flex;
   justify-content: center;
   background: white;
-  padding: 10px;
-  padding-bottom: 20px;
+  padding: 35px 0px 45px 0px;
   `;
 
 var viewCartBtn = document.createElement('a');
-viewCartBtn.style = 'margin:15px 15px';
-viewCartBtn.setAttribute(
-  'class',
-  'primary-button',
-  'minicart-link-checkout',
-  'show-for-large'
-);
 viewCartBtn.setAttribute('href', 'https://www.marmot.com/cart/');
-viewCartBtn.innerHTML = `Go To Cart`;
+viewCartBtn.innerHTML = `VIEW CART`;
 viewCartBtn.style = `
-  background = red;
-  border = 1px solid red
-  color = white;
-  margin: 15px 15px;
+  font: bold 12px/12px ars_maquette_probold,sans-serif;
+  background: #cc0001;
+  color: white;
+  display: inline-block;
+  text-align: center;
+  padding: 16px 40px;
   `;
 
 function openOverlay() {
