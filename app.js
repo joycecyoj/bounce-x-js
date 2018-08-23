@@ -24,7 +24,6 @@ overlayHeader.style = `
 padding-top: 30px;
 padding-left: 30px;
 padding-right: 30px;
-background: white;
 color: black;
 margin: 30px;
 font: 30px/1 ars_maquette_prolight,sans-serif;`;
@@ -55,6 +54,8 @@ overlayBody.style = `
 
 var overlayBodyText = document.createElement('div');
 overlayBodyText.style = `
+  border-right: 1px solid #cbcbcb;
+  height: 130px;
   padding-right: 15px;`;
 overlayBody.appendChild(overlayBodyText);
 overlayBodyText.innerHTML = `
@@ -65,6 +66,7 @@ overlayBodyText.innerHTML = `
     <div>
       <p>Estimated Total: ${cartTotal}</p>
     </div>`;
+
 
 var itemImages = document.querySelectorAll('div.mini-cart-container img');
 var moreText = document.createElement('div');
