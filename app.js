@@ -18,25 +18,31 @@ overlayContent.style = `
   width: 50%;
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);`;
 
-var overlayHeader = document.createElement('div');
-overlayContent.appendChild(overlayHeader);
-overlayHeader.style = `
-padding-top: 30px;
-padding-left: 30px;
-padding-right: 30px;
-color: black;
-margin: 30px;
-font: 30px/1 ars_maquette_prolight,sans-serif;`;
-overlayHeader.innerHTML = `<h1>Don't forget to checkout!</h1><hr>`;
 
-var closeBtn = document.createElement('span');
-overlayHeader.appendChild(closeBtn);
-closeBtn.style = `
-  margin: 0;
+  var closeHeader= document.createElement('div');
+  overlayContent.appendChild(closeHeader)
+
+  var closeBtn = document.createElement('span');
+  closeHeader.appendChild(closeBtn);
+  closeBtn.style = `
+  cursor: pointer;
+  margin: 20px 30px 20px 30px;
   float: right;
+  color: #cbcbcb;
+  font-size: 40px;`;
+  closeBtn.innerHTML = `&times;`;
+
+  var overlayHeader = document.createElement('div');
+  overlayContent.appendChild(overlayHeader);
+  overlayHeader.style = `
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
   color: black;
-  font-size: 25px;`;
-closeBtn.innerHTML = `&times;`;
+  margin: 30px;
+  font: 30px/1 ars_maquette_prolight,sans-serif;`;
+  overlayHeader.innerHTML = `<h1>Don't forget to checkout!</h1><hr>`;
+
 
 var overlayBody = document.createElement('div');
 var itemCount = document.getElementsByClassName('minicart-quantity')[0]
